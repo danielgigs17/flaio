@@ -56,7 +56,7 @@ function DividerContent({ theme }: { theme: DesignTheme }) {
         </div>
       )
 
-    case "apple":
+    case "minimal":
       // Ultra-thin gradient fade from center
       return (
         <div

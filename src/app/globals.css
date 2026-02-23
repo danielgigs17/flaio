@@ -92,8 +92,8 @@
   --color-accent: #FF2E97;
 }
 
-/* ── APPLE ── clean, thin, SF Pro feel ───────────────── */
-[data-theme="apple"] {
+/* ── MINIMAL ── clean, thin, SF Pro feel ───────────────── */
+[data-theme="minimal"] {
   --font-display: var(--font-inter), -apple-system, "SF Pro Display", system-ui, sans-serif;
   --font-body: var(--font-inter), -apple-system, "SF Pro Text", system-ui, sans-serif;
   --display-weight: 600;
@@ -110,7 +110,7 @@
   --wheel-active-weight: 600;
   --wheel-inactive-weight: 300;
 }
-.dark [data-theme="apple"] {
+.dark [data-theme="minimal"] {
   --color-page: #000000;
   --color-sand: #1C1C1E;
   --color-ink: #F5F5F7;
@@ -274,7 +274,7 @@ html.dark {
 }
 [data-theme="terminal"] .flaio-noise { opacity: 0.06; }
 [data-theme="cyberpunk"] .flaio-noise { opacity: 0.04; }
-[data-theme="apple"] .flaio-noise { opacity: 0.02; }
+[data-theme="minimal"] .flaio-noise { opacity: 0.02; }
 [data-theme="brutalist"] .flaio-noise { opacity: 0.07; }
 [data-theme="retro"] .flaio-noise { opacity: 0.065; }
 
@@ -322,9 +322,9 @@ html.dark {
 
 /* Brutalist: no blobs */
 [data-theme="brutalist"] .flaio-blobs { display: none; }
-/* Apple: softer, larger blobs */
-[data-theme="apple"] .flaio-blob { background: radial-gradient(circle, var(--color-accent) 0%, transparent 60%); opacity: 0.04; }
-[data-theme="apple"] .flaio-blob-1 { width: 700px; height: 700px; }
+/* Minimal: softer, larger blobs */
+[data-theme="minimal"] .flaio-blob { background: radial-gradient(circle, var(--color-accent) 0%, transparent 60%); opacity: 0.04; }
+[data-theme="minimal"] .flaio-blob-1 { width: 700px; height: 700px; }
 /* Terminal: tighter glow */
 [data-theme="terminal"] .flaio-blob { background: radial-gradient(circle, var(--color-accent) 0%, transparent 65%); opacity: 0.05; }
 /* Cyberpunk: more intense */
@@ -424,7 +424,7 @@ html.dark {
   background-size: 18px 18px;
   opacity: 0.06;
 }
-[data-theme="apple"] .flaio-dot-grid-bg {
+[data-theme="minimal"] .flaio-dot-grid-bg {
   background-image: radial-gradient(circle, var(--color-muted) 0.3px, transparent 0.3px);
   background-size: 28px 28px;
   opacity: 0.06;
@@ -502,7 +502,7 @@ html.dark {
   background: linear-gradient(90deg, #FF2E97, #00F0FF);
   box-shadow: 0 0 8px rgba(255, 46, 151, 0.5);
 }
-[data-theme="apple"] .flaio-underline::after {
+[data-theme="minimal"] .flaio-underline::after {
   height: 1.5px;
   bottom: -1px;
 }

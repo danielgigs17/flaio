@@ -6,7 +6,7 @@ export type DesignTheme =
   | "editorial"
   | "terminal"
   | "cyberpunk"
-  | "apple"
+  | "minimal"
   | "brutalist"
   | "retro"
 

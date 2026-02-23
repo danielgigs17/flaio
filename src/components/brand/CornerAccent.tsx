@@ -90,7 +90,7 @@ function CornerSVG({
           </svg>
         )
 
-      case "apple":
+      case "minimal":
         // Subtle rounded arc
         return (
           <svg viewBox="0 0 24 24" fill="none" style={posStyle}>

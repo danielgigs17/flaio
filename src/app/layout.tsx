@@ -64,7 +64,7 @@ const vt323 = VT323({
   display: "swap",
 })
 
-// ── Apple ──
+// ── Minimal ──
 const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],

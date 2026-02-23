@@ -7,7 +7,7 @@ const COLOR_THEMES = [
   { id: "editorial", label: "Editorial", desc: "Serif luxury", swatch: "#B8A082" },
   { id: "terminal", label: "Terminal", desc: "Hacker green", swatch: "#00FF41" },
   { id: "cyberpunk", label: "Cyberpunk", desc: "Neon future", swatch: "#FF2E97" },
-  { id: "apple", label: "Apple", desc: "Clean & minimal", swatch: "#0071E3" },
+  { id: "minimal", label: "Minimal", desc: "Clean & refined", swatch: "#0071E3" },
   { id: "brutalist", label: "Brutalist", desc: "Raw & loud", swatch: "#FF0000" },
   { id: "retro", label: "Retro", desc: "CRT amber", swatch: "#FFB000" },
 ] as const

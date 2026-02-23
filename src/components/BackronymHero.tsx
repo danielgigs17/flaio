@@ -33,20 +33,8 @@ export default function BackronymHero() {
     return () => mq.removeEventListener("change", handler)
   }, [])
 
-  // Log git hash on mount to verify deployed version
-  useEffect(() => {
-    console.log("[flaio] build:", process.env.NEXT_PUBLIC_GIT_HASH)
-  }, [])
-
-  const handlePanelEnter = useCallback(() => {
-    console.log("[hover] panel ENTER")
-    setPanelHovered(true)
-  }, [])
-
-  const handlePanelLeave = useCallback(() => {
-    console.log("[hover] panel LEAVE")
-    setPanelHovered(false)
-  }, [])
+  const handlePanelEnter = useCallback(() => setPanelHovered(true), [])
+  const handlePanelLeave = useCallback(() => setPanelHovered(false), [])
 
   // Measure the active word's rendered width
   useEffect(() => {

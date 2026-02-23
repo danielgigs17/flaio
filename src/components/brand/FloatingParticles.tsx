@@ -53,7 +53,7 @@ const CONFIGS: Record<DesignTheme, ParticleConfig> = {
     flicker: false,
     trail: 0.85,
   },
-  apple: {
+  minimal: {
     count: 5,
     color: "0, 113, 227",
     minSize: 30,
@@ -196,7 +196,7 @@ export default function FloatingParticles() {
 
     // Pre-compute fill styles
     const fillStyle = `rgba(${cfg.color}, 1)`
-    const appleFillStyle = `rgba(${cfg.color}, 0.04)`
+    const minimalFillStyle = `rgba(${cfg.color}, 0.04)`
     const trailClearStyle = cfg.trail > 0
       ? `rgba(${theme === "cyberpunk" ? "10,10,26" : theme === "terminal" ? "13,2,8" : "0,0,0"}, ${1 - cfg.trail})`
       : ""
@@ -264,7 +264,7 @@ export default function FloatingParticles() {
         if (cfg.shape === "circle") {
           ctx.beginPath()
           ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-          ctx.fillStyle = theme === "apple" ? appleFillStyle : fillStyle
+          ctx.fillStyle = theme === "minimal" ? minimalFillStyle : fillStyle
           ctx.fill()
         } else if (cfg.shape === "square") {
           ctx.fillStyle = fillStyle

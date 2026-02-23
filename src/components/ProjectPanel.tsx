@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import type { Project, AppPreview } from "@/data/projects"
-import { CornerAccent } from "@/components/brand"
 
 interface ProjectPanelProps {
   project: Project
@@ -101,7 +100,7 @@ export default function ProjectPanel({ project }: ProjectPanelProps) {
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <CornerAccent size={28}>
+
           <a
             href={project.href}
             className="project-card group block border border-hairline bg-sand/40 transition-colors hover:bg-sand/70 overflow-hidden"
@@ -224,7 +223,7 @@ export default function ProjectPanel({ project }: ProjectPanelProps) {
               </div>
             </div>
           </a>
-          </CornerAccent>
+
         </motion.div>
       </AnimatePresence>
     </div>
