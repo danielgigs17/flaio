@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useRef, useEffect } from "react"
+import { useState, useCallback, useRef, useEffect, type MouseEvent } from "react"
 import { motion } from "framer-motion"
 import ScrollWheel from "./ScrollWheel"
 import ProjectPanel from "./ProjectPanel"
@@ -13,7 +13,6 @@ export default function BackronymHero() {
   const measureRef = useRef<HTMLSpanElement>(null)
   const [wordWidth, setWordWidth] = useState(200)
   const [isMd, setIsMd] = useState(false)
-  const panelRef = useRef<HTMLDivElement>(null)
   const [panelHovered, setPanelHovered] = useState(false)
 
   const words = projects.map((p) => p.word)
@@ -34,18 +33,14 @@ export default function BackronymHero() {
     return () => mq.removeEventListener("change", handler)
   }, [])
 
-  // Track hover on project panel via native events (immune to AnimatePresence re-renders)
-  useEffect(() => {
-    const el = panelRef.current
-    if (!el) return
-    const enter = () => { console.log("[hover] panel ENTER"); setPanelHovered(true) }
-    const leave = () => { console.log("[hover] panel LEAVE"); setPanelHovered(false) }
-    el.addEventListener("mouseenter", enter)
-    el.addEventListener("mouseleave", leave)
-    return () => {
-      el.removeEventListener("mouseenter", enter)
-      el.removeEventListener("mouseleave", leave)
-    }
+  const handlePanelEnter = useCallback(() => {
+    console.log("[hover] panel ENTER")
+    setPanelHovered(true)
+  }, [])
+
+  const handlePanelLeave = useCallback(() => {
+    console.log("[hover] panel LEAVE")
+    setPanelHovered(false)
   }, [])
 
   // Measure the active word's rendered width
@@ -97,6 +92,7 @@ export default function BackronymHero() {
 
         {/* Scroll wheel — animated width based on active word */}
         <motion.div
+          suppressHydrationWarning
           className="w-full md:w-auto relative overflow-visible"
           animate={isMd ? { width: wordWidth + 48 } : undefined}
           transition={SIDE_SPRING}
@@ -131,7 +127,7 @@ export default function BackronymHero() {
       </div>
 
       {/* ── Project panel ── */}
-      <div ref={panelRef}>
+      <div onMouseEnter={handlePanelEnter} onMouseLeave={handlePanelLeave}>
         <ProjectPanel project={activeProject} />
       </div>
     </section>
