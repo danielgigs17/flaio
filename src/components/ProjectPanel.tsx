@@ -1,11 +1,93 @@
 "use client"
 
+import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import type { Project } from "@/data/projects"
+import type { Project, AppPreview } from "@/data/projects"
 import { CornerAccent } from "@/components/brand"
 
 interface ProjectPanelProps {
   project: Project
+}
+
+function AppIcon({ app, accentHue }: { app: AppPreview; accentHue: number }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  const showImg = app.iconImage && !imgFailed
+
+  return (
+    <a
+      key={app.name}
+      href={app.href}
+      className="flex flex-col items-center gap-1.5 group/app"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div
+        className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center overflow-hidden shadow-sm group-hover/app:shadow-md transition-shadow"
+        style={{
+          borderRadius: "22%",
+          background: `linear-gradient(145deg, hsla(${accentHue}, 35%, 55%, 0.15), hsla(${accentHue}, 25%, 45%, 0.08))`,
+        }}
+      >
+        {showImg ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={app.iconImage}
+            alt={app.name}
+            className="w-full h-full object-cover"
+            style={{ borderRadius: "22%" }}
+            onError={() => setImgFailed(true)}
+          />
+        ) : (
+          <span className="text-2xl">{app.icon}</span>
+        )}
+      </div>
+      <span
+        className="text-[11px] text-muted font-medium text-center leading-tight"
+        style={{ fontFamily: "var(--font-body)" }}
+      >
+        {app.name}
+      </span>
+    </a>
+  )
+}
+
+function ScreenshotPreview({ src, alt, icon, accentHue }: { src: string; alt: string; icon: string; accentHue: number }) {
+  const [imgFailed, setImgFailed] = useState(false)
+
+  return (
+    <div
+      className="relative w-full h-32 md:h-40 overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, hsla(${accentHue}, 40%, 60%, 0.15), hsla(${accentHue}, 30%, 40%, 0.08))`,
+      }}
+    >
+      {!imgFailed && (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={src}
+          alt={alt}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+          onError={() => setImgFailed(true)}
+        />
+      )}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span
+          className="text-5xl opacity-20"
+          style={{
+            filter: `hue-rotate(${accentHue}deg)`,
+          }}
+        >
+          {icon}
+        </span>
+      </div>
+      <div
+        className="absolute bottom-0 left-0 right-0 h-12"
+        style={{
+          background:
+            "linear-gradient(to top, var(--color-sand), transparent)",
+        }}
+      />
+    </div>
+  )
 }
 
 export default function ProjectPanel({ project }: ProjectPanelProps) {
@@ -30,39 +112,12 @@ export default function ProjectPanel({ project }: ProjectPanelProps) {
           >
             {/* Screenshot preview area */}
             {project.screenshot && (
-              <div
-                className="relative w-full h-32 md:h-40 overflow-hidden"
-                style={{
-                  background: `linear-gradient(135deg, hsla(${project.accentHue}, 40%, 60%, 0.15), hsla(${project.accentHue}, 30%, 40%, 0.08))`,
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.screenshot}
-                  alt={`${project.name} preview`}
-                  className="absolute inset-0 w-full h-full object-cover object-top"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none"
-                  }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <span
-                    className="text-5xl opacity-20"
-                    style={{
-                      filter: `hue-rotate(${project.accentHue}deg)`,
-                    }}
-                  >
-                    {project.icon}
-                  </span>
-                </div>
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-12"
-                  style={{
-                    background:
-                      "linear-gradient(to top, var(--color-sand), transparent)",
-                  }}
-                />
-              </div>
+              <ScreenshotPreview
+                src={project.screenshot}
+                alt={`${project.name} preview`}
+                icon={project.icon}
+                accentHue={project.accentHue}
+              />
             )}
 
             <div className="p-6 md:p-8">
@@ -134,43 +189,7 @@ export default function ProjectPanel({ project }: ProjectPanelProps) {
               {project.apps && project.apps.length > 0 && (
                 <div className="mt-5 flex items-start gap-6 justify-center">
                   {project.apps.map((app) => (
-                    <a
-                      key={app.name}
-                      href={app.href}
-                      className="flex flex-col items-center gap-1.5 group/app"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <div
-                        className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center overflow-hidden shadow-sm group-hover/app:shadow-md transition-shadow"
-                        style={{
-                          borderRadius: "22%",
-                          background: `linear-gradient(145deg, hsla(${project.accentHue}, 35%, 55%, 0.15), hsla(${project.accentHue}, 25%, 45%, 0.08))`,
-                        }}
-                      >
-                        {app.iconImage ? (
-                          /* eslint-disable-next-line @next/next/no-img-element */
-                          <img
-                            src={app.iconImage}
-                            alt={app.name}
-                            className="w-full h-full object-cover"
-                            style={{ borderRadius: "22%" }}
-                            onError={(e) => {
-                              e.currentTarget.style.display = "none"
-                              e.currentTarget.nextElementSibling?.classList.remove("hidden")
-                            }}
-                          />
-                        ) : null}
-                        <span className={`text-2xl ${app.iconImage ? "hidden" : ""}`}>
-                          {app.icon}
-                        </span>
-                      </div>
-                      <span
-                        className="text-[11px] text-muted font-medium text-center leading-tight"
-                        style={{ fontFamily: "var(--font-body)" }}
-                      >
-                        {app.name}
-                      </span>
-                    </a>
+                    <AppIcon key={app.name} app={app} accentHue={project.accentHue} />
                   ))}
                 </div>
               )}

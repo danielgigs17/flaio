@@ -33,19 +33,16 @@ export const projects: Project[] = [
         name: "Leprechaun",
         icon: "🍀",
         href: "https://leprechaun.flaio.com",
-        iconImage: "/icons/leprechaun.png",
       },
       {
         name: "Video Poker",
         icon: "🃏",
         href: "https://poker.flaio.com",
-        iconImage: "/icons/videopoker.png",
       },
       {
         name: "Lector",
         icon: "📰",
         href: "https://lector.flaio.com",
-        iconImage: "/icons/lector.png",
       },
     ],
     tags: ["gaming", "productivity", "web"],
@@ -59,7 +56,6 @@ export const projects: Project[] = [
     href: "https://atelier.flaio.com",
     linkLabel: "Visit store",
     accentHue: 35,
-    screenshot: "/screenshots/atelier.jpg",
     tags: ["fashion", "shopify", "e-commerce"],
   },
   {
@@ -71,7 +67,6 @@ export const projects: Project[] = [
     href: "https://beyonce.flaio.com",
     linkLabel: "Browse the archive",
     accentHue: 45,
-    screenshot: "/screenshots/archive.jpg",
     tags: ["archive", "media", "culture"],
   },
   {
