@@ -2,7 +2,7 @@ export interface AppPreview {
   name: string
   icon: string
   href: string
-  screenshot?: string
+  iconImage?: string
 }
 
 export interface Project {
@@ -30,22 +30,22 @@ export const projects: Project[] = [
     accentHue: 220,
     apps: [
       {
+        name: "Leprechaun",
+        icon: "🍀",
+        href: "https://leprechaun.flaio.com",
+        iconImage: "/icons/leprechaun.png",
+      },
+      {
         name: "Video Poker",
         icon: "🃏",
         href: "https://poker.flaio.com",
-        screenshot: "/screenshots/poker.jpg",
-      },
-      {
-        name: "Freebet Blackjack",
-        icon: "🍀",
-        href: "/apps/blackjack",
-        screenshot: "/screenshots/blackjack.jpg",
+        iconImage: "/icons/videopoker.png",
       },
       {
         name: "Lector",
         icon: "📰",
         href: "https://lector.flaio.com",
-        screenshot: "/screenshots/lector.jpg",
+        iconImage: "/icons/lector.png",
       },
     ],
     tags: ["gaming", "productivity", "web"],
@@ -68,33 +68,21 @@ export const projects: Project[] = [
     description:
       "A curated archive of Beyoncé — performances, visuals, fashion, eras, and cultural moments. Organized, searchable, and ever-growing.",
     icon: "🐝",
-    href: "/archive",
+    href: "https://beyonce.flaio.com",
     linkLabel: "Browse the archive",
     accentHue: 45,
     screenshot: "/screenshots/archive.jpg",
     tags: ["archive", "media", "culture"],
   },
   {
-    word: "aggregator",
-    name: "Lector",
+    word: "art",
+    name: "FLAIO Art",
     description:
-      "A modern RSS reader and feed aggregator. Subscribe to feeds, read articles, and stay informed without the noise.",
-    icon: "📡",
-    href: "https://lector.flaio.com",
-    linkLabel: "Read",
-    accentHue: 25,
-    screenshot: "/screenshots/lector.jpg",
-    tags: ["rss", "reader", "productivity"],
-  },
-  {
-    word: "auth",
-    name: "FLAIO Auth",
-    description:
-      "Centralized OAuth service for the FLAIO ecosystem. One login across all apps — secure, fast, and unified.",
-    icon: "🔐",
-    href: "/auth",
-    linkLabel: "Learn more",
-    accentHue: 260,
-    tags: ["oauth", "identity", "infrastructure"],
+      "Original digital art, generative visuals, and creative experiments. Where code meets canvas.",
+    icon: "🎨",
+    href: "/art",
+    linkLabel: "View gallery",
+    accentHue: 310,
+    tags: ["art", "generative", "creative"],
   },
 ]

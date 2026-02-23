@@ -130,52 +130,47 @@ export default function ProjectPanel({ project }: ProjectPanelProps) {
                 </span>
               </div>
 
-              {/* App previews grid (for apps card) */}
+              {/* App icons grid (iOS-style) */}
               {project.apps && project.apps.length > 0 && (
-                <div className="mt-5 grid grid-cols-3 gap-3">
+                <div className="mt-5 flex items-start gap-6 justify-center">
                   {project.apps.map((app) => (
-                    <div
+                    <a
                       key={app.name}
-                      className="relative group/app rounded-lg overflow-hidden border border-hairline/50"
-                      style={{ borderRadius: "var(--card-radius)" }}
+                      href={app.href}
+                      className="flex flex-col items-center gap-1.5 group/app"
+                      onClick={(e) => e.stopPropagation()}
                     >
-                      {/* App screenshot */}
                       <div
-                        className="w-full h-20 md:h-24 relative"
+                        className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center overflow-hidden shadow-sm group-hover/app:shadow-md transition-shadow"
                         style={{
-                          background: `linear-gradient(145deg, hsla(${project.accentHue}, 35%, 55%, 0.12), hsla(${project.accentHue}, 25%, 45%, 0.06))`,
+                          borderRadius: "22%",
+                          background: `linear-gradient(145deg, hsla(${project.accentHue}, 35%, 55%, 0.15), hsla(${project.accentHue}, 25%, 45%, 0.08))`,
                         }}
                       >
-                        {app.screenshot && (
+                        {app.iconImage ? (
                           /* eslint-disable-next-line @next/next/no-img-element */
                           <img
-                            src={app.screenshot}
-                            alt={`${app.name} preview`}
-                            className="absolute inset-0 w-full h-full object-cover object-top"
+                            src={app.iconImage}
+                            alt={app.name}
+                            className="w-full h-full object-cover"
+                            style={{ borderRadius: "22%" }}
                             onError={(e) => {
                               e.currentTarget.style.display = "none"
+                              e.currentTarget.nextElementSibling?.classList.remove("hidden")
                             }}
                           />
-                        )}
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                          <span className="text-2xl">{app.icon}</span>
-                        </div>
-                      </div>
-                      {/* App name */}
-                      <div
-                        className="px-2 py-1.5 text-center"
-                        style={{
-                          background: `hsla(${project.accentHue}, 20%, 50%, 0.05)`,
-                        }}
-                      >
-                        <span
-                          className="text-xs text-muted font-medium"
-                          style={{ fontFamily: "var(--font-body)" }}
-                        >
-                          {app.name}
+                        ) : null}
+                        <span className={`text-2xl ${app.iconImage ? "hidden" : ""}`}>
+                          {app.icon}
                         </span>
                       </div>
-                    </div>
+                      <span
+                        className="text-[11px] text-muted font-medium text-center leading-tight"
+                        style={{ fontFamily: "var(--font-body)" }}
+                      >
+                        {app.name}
+                      </span>
+                    </a>
                   ))}
                 </div>
               )}
