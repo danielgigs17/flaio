@@ -54,6 +54,9 @@ build_app() {
     log_step "Installing dependencies..."
     npm install 2>&1 | tail -5
 
+    log_step "Cleaning previous build..."
+    rm -rf .next
+
     log_step "Building Next.js..."
     npm run build 2>&1 | tail -10
 
