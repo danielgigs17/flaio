@@ -12,9 +12,9 @@ function DividerContent({ theme }: { theme: DesignTheme }) {
       // Thin line with diamond center
       return (
         <svg className="w-full" height="16" viewBox="0 0 800 16" preserveAspectRatio="none">
-          <line x1="0" y1="8" x2="370" y2="8" stroke="var(--color-accent)" strokeWidth="0.5" opacity="0.3" />
-          <rect x="392" y="2" width="8" height="8" fill="var(--color-accent)" opacity="0.25" transform="rotate(45 396 6)" />
-          <line x1="422" y1="8" x2="800" y2="8" stroke="var(--color-accent)" strokeWidth="0.5" opacity="0.3" />
+          <line x1="0" y1="8" x2="384" y2="8" stroke="var(--color-accent)" strokeWidth="0.5" opacity="0.3" />
+          <rect x="396" y="4" width="8" height="8" fill="var(--color-accent)" opacity="0.25" transform="rotate(45 400 8)" />
+          <line x1="416" y1="8" x2="800" y2="8" stroke="var(--color-accent)" strokeWidth="0.5" opacity="0.3" />
         </svg>
       )
 
