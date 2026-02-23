@@ -13,6 +13,7 @@ export default function BackronymHero() {
   const measureRef = useRef<HTMLSpanElement>(null)
   const [wordWidth, setWordWidth] = useState(200)
   const [isMd, setIsMd] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
   const [panelHovered, setPanelHovered] = useState(false)
 
   const words = projects.map((p) => p.word)
@@ -31,6 +32,20 @@ export default function BackronymHero() {
     const handler = (e: MediaQueryListEvent) => setIsMd(e.matches)
     mq.addEventListener("change", handler)
     return () => mq.removeEventListener("change", handler)
+  }, [])
+
+  // Track hover on project panel via native events (immune to AnimatePresence re-renders)
+  useEffect(() => {
+    const el = panelRef.current
+    if (!el) return
+    const enter = () => setPanelHovered(true)
+    const leave = () => setPanelHovered(false)
+    el.addEventListener("mouseenter", enter)
+    el.addEventListener("mouseleave", leave)
+    return () => {
+      el.removeEventListener("mouseenter", enter)
+      el.removeEventListener("mouseleave", leave)
+    }
   }, [])
 
   // Measure the active word's rendered width
@@ -116,10 +131,7 @@ export default function BackronymHero() {
       </div>
 
       {/* ── Project panel ── */}
-      <div
-        onMouseEnter={() => setPanelHovered(true)}
-        onMouseLeave={() => setPanelHovered(false)}
-      >
+      <div ref={panelRef}>
         <ProjectPanel project={activeProject} />
       </div>
     </section>
