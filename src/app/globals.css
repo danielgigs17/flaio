@@ -1,26 +1,532 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ══════════════════════════════════════════════════
+   THEME SYSTEM
+
+   Each theme defines:
+   - Fonts (display + body)
+   - Colors (light + dark variants)
+   - Special effects (glow, scanlines, etc.)
+   ══════════════════════════════════════════════════ */
+
+/* ── EDITORIAL ── warm gold, serif luxury ─────────────── */
+:root,
+[data-theme="editorial"] {
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-darker-grotesque), system-ui, sans-serif;
+  --display-weight: 300;
+  --display-tracking: 0.02em;
+  --display-transform: none;
+  --body-weight: 400;
+  --card-radius: 1rem;
+  --color-page: #F8F7F4;
+  --color-sand: #EFE7DD;
+  --color-ink: #1E1A16;
+  --color-muted: #6E625B;
+  --color-hairline: rgba(30, 26, 22, 0.08);
+  --color-accent: #B8A082;
+  --wheel-active-weight: 600;
+  --wheel-inactive-weight: 300;
+}
+.dark,
+.dark [data-theme="editorial"] {
+  --color-page: #0F0E0D;
+  --color-sand: #1A1816;
+  --color-ink: #F0EDE8;
+  --color-muted: #9A8E85;
+  --color-hairline: rgba(240, 237, 232, 0.08);
+  --color-accent: #C4A052;
 }
 
+/* ── TERMINAL ── green phosphor on black ─────────────── */
+[data-theme="terminal"] {
+  --font-display: var(--font-jetbrains), "Courier New", monospace;
+  --font-body: var(--font-jetbrains), "Courier New", monospace;
+  --display-weight: 400;
+  --display-tracking: 0em;
+  --display-transform: lowercase;
+  --body-weight: 400;
+  --card-radius: 0px;
+  --color-page: #0D0208;
+  --color-sand: #0D1A0A;
+  --color-ink: #00FF41;
+  --color-muted: #00AA2A;
+  --color-hairline: rgba(0, 255, 65, 0.12);
+  --color-accent: #00FF41;
+  --wheel-active-weight: 700;
+  --wheel-inactive-weight: 300;
+}
+.dark [data-theme="terminal"] {
+  --color-page: #0D0208;
+  --color-sand: #0D1A0A;
+  --color-ink: #00FF41;
+  --color-muted: #00AA2A;
+  --color-hairline: rgba(0, 255, 65, 0.12);
+  --color-accent: #00FF41;
+}
+
+/* ── CYBERPUNK ── neon pink/cyan, futuristic ─────────── */
+[data-theme="cyberpunk"] {
+  --font-display: var(--font-orbitron), sans-serif;
+  --font-body: var(--font-sharetech), monospace;
+  --display-weight: 700;
+  --display-tracking: 0.08em;
+  --display-transform: uppercase;
+  --body-weight: 400;
+  --card-radius: 4px;
+  --color-page: #0A0A1A;
+  --color-sand: #12122A;
+  --color-ink: #E0E0FF;
+  --color-muted: #8888CC;
+  --color-hairline: rgba(255, 46, 151, 0.15);
+  --color-accent: #FF2E97;
+  --wheel-active-weight: 900;
+  --wheel-inactive-weight: 400;
+}
+.dark [data-theme="cyberpunk"] {
+  --color-page: #0A0A1A;
+  --color-sand: #12122A;
+  --color-ink: #E0E0FF;
+  --color-muted: #8888CC;
+  --color-hairline: rgba(255, 46, 151, 0.15);
+  --color-accent: #FF2E97;
+}
+
+/* ── APPLE ── clean, thin, SF Pro feel ───────────────── */
+[data-theme="apple"] {
+  --font-display: var(--font-inter), -apple-system, "SF Pro Display", system-ui, sans-serif;
+  --font-body: var(--font-inter), -apple-system, "SF Pro Text", system-ui, sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.03em;
+  --display-transform: none;
+  --body-weight: 400;
+  --card-radius: 1.25rem;
+  --color-page: #FFFFFF;
+  --color-sand: #F5F5F7;
+  --color-ink: #1D1D1F;
+  --color-muted: #86868B;
+  --color-hairline: rgba(0, 0, 0, 0.06);
+  --color-accent: #0071E3;
+  --wheel-active-weight: 600;
+  --wheel-inactive-weight: 300;
+}
+.dark [data-theme="apple"] {
+  --color-page: #000000;
+  --color-sand: #1C1C1E;
+  --color-ink: #F5F5F7;
+  --color-muted: #86868B;
+  --color-hairline: rgba(255, 255, 255, 0.06);
+  --color-accent: #2997FF;
+}
+
+/* ── BRUTALIST ── raw, monospace, no decoration ──────── */
+[data-theme="brutalist"] {
+  --font-display: var(--font-space-mono), "Courier New", monospace;
+  --font-body: var(--font-space-mono), "Courier New", monospace;
+  --display-weight: 700;
+  --display-tracking: -0.02em;
+  --display-transform: uppercase;
+  --body-weight: 400;
+  --card-radius: 0px;
+  --color-page: #FFFFFF;
+  --color-sand: #FFFFFF;
+  --color-ink: #000000;
+  --color-muted: #000000;
+  --color-hairline: #000000;
+  --color-accent: #FF0000;
+  --wheel-active-weight: 700;
+  --wheel-inactive-weight: 400;
+}
+.dark [data-theme="brutalist"] {
+  --color-page: #000000;
+  --color-sand: #000000;
+  --color-ink: #FFFFFF;
+  --color-muted: #FFFFFF;
+  --color-hairline: #FFFFFF;
+  --color-accent: #FF0000;
+}
+
+/* ── RETRO ── pixel font, CRT amber ─────────────────── */
+[data-theme="retro"] {
+  --font-display: var(--font-vt323), "Courier New", monospace;
+  --font-body: var(--font-vt323), "Courier New", monospace;
+  --display-weight: 400;
+  --display-tracking: 0.05em;
+  --display-transform: uppercase;
+  --body-weight: 400;
+  --card-radius: 0px;
+  --color-page: #1A0A00;
+  --color-sand: #2A1500;
+  --color-ink: #FFB000;
+  --color-muted: #CC8800;
+  --color-hairline: rgba(255, 176, 0, 0.15);
+  --color-accent: #FFB000;
+  --wheel-active-weight: 400;
+  --wheel-inactive-weight: 400;
+}
+.dark [data-theme="retro"] {
+  --color-page: #1A0A00;
+  --color-sand: #2A1500;
+  --color-ink: #FFB000;
+  --color-muted: #CC8800;
+  --color-hairline: rgba(255, 176, 0, 0.15);
+  --color-accent: #FFB000;
+}
+
+/* ── Tailwind theme tokens ── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-page: var(--color-page);
+  --color-sand: var(--color-sand);
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-hairline: var(--color-hairline);
+  --color-accent: var(--color-accent);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-darker-grotesque);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ── Base styles ── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ── Suppress FOUC for next-themes ── */
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* ══════════════════════════════════════════════════
+   THEME-SPECIFIC EFFECTS
+   ══════════════════════════════════════════════════ */
+
+/* ── Terminal: scanline overlay + text glow ── */
+[data-theme="terminal"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+[data-theme="terminal"] [data-wheel-active="true"] {
+  text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41, 0 0 40px #00AA2A;
+}
+
+/* ── Cyberpunk: neon glow on active ── */
+[data-theme="cyberpunk"] [data-wheel-active="true"] {
+  text-shadow: 0 0 10px #FF2E97, 0 0 30px #FF2E97, 0 0 60px #FF2E97;
+}
+[data-theme="cyberpunk"] .project-card {
+  box-shadow: 0 0 15px rgba(255, 46, 151, 0.1), inset 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+/* ── Brutalist: heavy borders, no rounded anything ── */
+[data-theme="brutalist"] .project-card {
+  border-width: 3px;
+  border-color: var(--color-ink);
+}
+
+/* ── Retro: CRT glow + slight curvature ── */
+[data-theme="retro"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+[data-theme="retro"] [data-wheel-active="true"] {
+  text-shadow: 0 0 8px #FFB000, 0 0 20px rgba(255, 176, 0, 0.5);
+}
+
+/* ══════════════════════════════════════════════════
+   BRAND FLAIRS — Visual treatments for FLAIO
+   ══════════════════════════════════════════════════ */
+
+/* ── Noise Overlay ── */
+/* Uses a static canvas-generated texture (set in JS). No live SVG filters. */
+.flaio-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-size: 200px 200px;
+}
+[data-theme="terminal"] .flaio-noise { opacity: 0.06; }
+[data-theme="cyberpunk"] .flaio-noise { opacity: 0.04; }
+[data-theme="apple"] .flaio-noise { opacity: 0.02; }
+[data-theme="brutalist"] .flaio-noise { opacity: 0.07; }
+[data-theme="retro"] .flaio-noise { opacity: 0.065; }
+
+/* ── Gradient Blobs ── */
+.flaio-blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+/* Blobs use radial-gradient for soft edges — no filter: blur() needed.
+   This avoids expensive per-frame repaints. Animations are transform-only
+   so they stay on the GPU compositor layer. */
+.flaio-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  opacity: 0.07;
+  will-change: transform;
+}
+.flaio-blob-1 {
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  left: -5%;
+  animation: flaio-blob-drift-1 25s ease-in-out infinite;
+}
+.flaio-blob-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -5%;
+  right: -5%;
+  opacity: 0.05;
+  animation: flaio-blob-drift-2 30s ease-in-out infinite;
+}
+.flaio-blob-3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 50%;
+  opacity: 0.04;
+  animation: flaio-blob-drift-3 20s ease-in-out infinite;
+}
+
+/* Brutalist: no blobs */
+[data-theme="brutalist"] .flaio-blobs { display: none; }
+/* Apple: softer, larger blobs */
+[data-theme="apple"] .flaio-blob { background: radial-gradient(circle, var(--color-accent) 0%, transparent 60%); opacity: 0.04; }
+[data-theme="apple"] .flaio-blob-1 { width: 700px; height: 700px; }
+/* Terminal: tighter glow */
+[data-theme="terminal"] .flaio-blob { background: radial-gradient(circle, var(--color-accent) 0%, transparent 65%); opacity: 0.05; }
+/* Cyberpunk: more intense */
+[data-theme="cyberpunk"] .flaio-blob { opacity: 0.09; }
+
+@keyframes flaio-blob-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(80px, 60px) scale(1.1); }
+  66% { transform: translate(-40px, 80px) scale(0.95); }
+}
+@keyframes flaio-blob-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-60px, -40px) scale(1.05); }
+  66% { transform: translate(40px, -60px) scale(1.1); }
+}
+@keyframes flaio-blob-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.15); }
+}
+
+/* ── Monogram: flair dot pulse ── */
+.flaio-flair-dot {
+  animation: flaio-flair-pulse 3s ease-in-out infinite;
+}
+@keyframes flaio-flair-pulse {
+  0%, 100% { opacity: 0.8; r: 4; }
+  50% { opacity: 1; r: 5; }
+}
+.flaio-watermark {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ── Mark: radial brand icon ── */
+.flaio-mark-hub {
+  animation: flaio-flair-pulse 3s ease-in-out infinite;
+}
+[data-theme="terminal"] .flaio-mark-accent {
+  filter: drop-shadow(0 0 4px var(--color-accent));
+}
+[data-theme="cyberpunk"] .flaio-mark-accent {
+  filter: drop-shadow(0 0 6px var(--color-accent));
+}
+[data-theme="retro"] .flaio-mark-accent {
+  filter: drop-shadow(0 0 3px var(--color-accent));
+}
+
+/* ── Animated Divider ── */
+.flaio-divider-cursor {
+  animation: flaio-cursor-blink 1s step-end infinite;
+}
+@keyframes flaio-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.flaio-divider-glitch {
+  animation: flaio-glitch-shift 4s ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes flaio-glitch-shift {
+  0%, 92%, 100% { opacity: 0; transform: translateX(0); }
+  93% { opacity: 0.8; transform: translateX(-20px); }
+  94% { opacity: 0; transform: translateX(10px); }
+  95% { opacity: 0.6; transform: translateX(15px); }
+  96% { opacity: 0; }
+}
+.flaio-divider-flicker {
+  animation: flaio-flicker 3s ease-in-out infinite;
+}
+@keyframes flaio-flicker {
+  0%, 100% { opacity: 1; }
+  42% { opacity: 1; }
+  43% { opacity: 0.6; }
+  44% { opacity: 1; }
+  87% { opacity: 1; }
+  88% { opacity: 0.4; }
+  89% { opacity: 0.9; }
+  90% { opacity: 1; }
+}
+
+/* ── Dot Grid Patterns ── */
+.flaio-dot-grid-bg {
+  background-image: radial-gradient(circle, var(--color-accent) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.08;
+}
+[data-theme="terminal"] .flaio-dot-grid-bg {
+  background-image:
+    linear-gradient(var(--color-accent) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--color-accent) 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  opacity: 0.06;
+}
+[data-theme="cyberpunk"] .flaio-dot-grid-bg {
+  background-image: radial-gradient(circle, var(--color-accent) 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
+  opacity: 0.06;
+}
+[data-theme="apple"] .flaio-dot-grid-bg {
+  background-image: radial-gradient(circle, var(--color-muted) 0.3px, transparent 0.3px);
+  background-size: 28px 28px;
+  opacity: 0.06;
+}
+[data-theme="brutalist"] .flaio-dot-grid-bg {
+  background-image:
+    linear-gradient(var(--color-ink) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-ink) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.04;
+}
+[data-theme="retro"] .flaio-dot-grid-bg {
+  background-image: linear-gradient(0deg, var(--color-accent) 1px, transparent 1px);
+  background-size: 100% 4px;
+  opacity: 0.04;
+}
+
+/* ── Accent Underline ── */
+.flaio-underline {
+  position: relative;
+  display: inline-block;
+}
+.flaio-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--color-accent);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+/* Hover trigger */
+.flaio-underline-hover::after {
+  transform: scaleX(0);
+  opacity: 0;
+}
+.flaio-underline-hover:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Always visible */
+.flaio-underline-always::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Animate in on mount */
+.flaio-underline-animate-in::after {
+  animation: flaio-underline-draw 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes flaio-underline-draw {
+  from { transform: scaleX(0); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+/* Theme-specific underline treatments */
+[data-theme="editorial"] .flaio-underline::after {
+  height: 1px;
+  bottom: -1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+[data-theme="terminal"] .flaio-underline::after {
+  height: 2px;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
+  animation: flaio-underline-draw 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    flaio-cursor-blink 1s step-end infinite;
+}
+[data-theme="cyberpunk"] .flaio-underline::after {
+  height: 2px;
+  background: linear-gradient(90deg, #FF2E97, #00F0FF);
+  box-shadow: 0 0 8px rgba(255, 46, 151, 0.5);
+}
+[data-theme="apple"] .flaio-underline::after {
+  height: 1.5px;
+  bottom: -1px;
+}
+[data-theme="brutalist"] .flaio-underline::after {
+  height: 4px;
+  background: var(--color-ink);
+}
+[data-theme="retro"] .flaio-underline::after {
+  height: 2px;
+  box-shadow: 0 0 4px var(--color-accent);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .flaio-blob,
+  .flaio-flair-dot,
+  .flaio-mark-hub,
+  .flaio-divider-cursor,
+  .flaio-divider-glitch,
+  .flaio-divider-flicker {
+    animation: none !important;
+  }
+  .flaio-underline::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
