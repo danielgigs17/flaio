@@ -12,6 +12,7 @@ interface ScrollWheelProps {
   items: string[]
   activeIndex: number
   onActiveChange: (index: number) => void
+  paused?: boolean
 }
 
 const SPRING = {
@@ -25,6 +26,7 @@ export default function ScrollWheel({
   items,
   activeIndex,
   onActiveChange,
+  paused = false,
 }: ScrollWheelProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const y = useMotionValue(0)
@@ -73,8 +75,8 @@ export default function ScrollWheel({
     () => setIsAutoPlaying(false)
   )
 
-  // Auto-advance
-  useAutoAdvance(goNext, 3500, isAutoPlaying)
+  // Auto-advance (disabled when paused externally, e.g. hovering detail card)
+  useAutoAdvance(goNext, 3500, isAutoPlaying && !paused)
 
   // Mouse wheel navigation
   useWheelNavigation(

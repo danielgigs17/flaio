@@ -13,6 +13,7 @@ export default function BackronymHero() {
   const measureRef = useRef<HTMLSpanElement>(null)
   const [wordWidth, setWordWidth] = useState(200)
   const [isMd, setIsMd] = useState(false)
+  const [panelHovered, setPanelHovered] = useState(false)
 
   const words = projects.map((p) => p.word)
 
@@ -92,6 +93,7 @@ export default function BackronymHero() {
                 items={words}
                 activeIndex={activeIndex}
                 onActiveChange={handleActiveChange}
+                paused={panelHovered}
               />
             </div>
           </div>
@@ -114,7 +116,12 @@ export default function BackronymHero() {
       </div>
 
       {/* ── Project panel ── */}
-      <ProjectPanel project={activeProject} />
+      <div
+        onMouseEnter={() => setPanelHovered(true)}
+        onMouseLeave={() => setPanelHovered(false)}
+      >
+        <ProjectPanel project={activeProject} />
+      </div>
     </section>
   )
 }
