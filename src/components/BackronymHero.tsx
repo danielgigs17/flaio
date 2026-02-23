@@ -33,6 +33,11 @@ export default function BackronymHero() {
     return () => mq.removeEventListener("change", handler)
   }, [])
 
+  // Log git hash on mount to verify deployed version
+  useEffect(() => {
+    console.log("[flaio] build:", process.env.NEXT_PUBLIC_GIT_HASH)
+  }, [])
+
   const handlePanelEnter = useCallback(() => {
     console.log("[hover] panel ENTER")
     setPanelHovered(true)
