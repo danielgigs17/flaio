@@ -38,8 +38,8 @@ export default function BackronymHero() {
   useEffect(() => {
     const el = panelRef.current
     if (!el) return
-    const enter = () => setPanelHovered(true)
-    const leave = () => setPanelHovered(false)
+    const enter = () => { console.log("[hover] panel ENTER"); setPanelHovered(true) }
+    const leave = () => { console.log("[hover] panel LEAVE"); setPanelHovered(false) }
     el.addEventListener("mouseenter", enter)
     el.addEventListener("mouseleave", leave)
     return () => {
