@@ -36,7 +36,7 @@ set -e
 cd /root/flaio
 
 echo "=== Installing dependencies ==="
-npm install --omit=dev 2>&1 | tail -3
+npm install 2>&1 | tail -3
 
 echo "=== Building Next.js ==="
 npm run build 2>&1 | tail -10

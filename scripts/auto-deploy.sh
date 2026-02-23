@@ -52,7 +52,7 @@ pull_changes() {
 build_app() {
     cd "$REPO_PATH"
     log_step "Installing dependencies..."
-    npm install --omit=dev 2>&1 | tail -5
+    npm install 2>&1 | tail -5
 
     log_step "Building Next.js..."
     npm run build 2>&1 | tail -10
