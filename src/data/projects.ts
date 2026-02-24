@@ -84,7 +84,7 @@ export const projects: Project[] = [
     tags: ["art", "generative", "creative"],
   },
   {
-    word: "podcasts",
+    word: "audio",
     name: "FLAIO Podcasts",
     description:
       "Self-hosted podcast platform with RSS feeds, automated audio processing, and directory submissions. Listen, subscribe, and stay updated.",
