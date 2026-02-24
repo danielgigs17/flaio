@@ -83,4 +83,15 @@ export const projects: Project[] = [
     accentHue: 310,
     tags: ["art", "generative", "creative"],
   },
+  {
+    word: "podcasts",
+    name: "FLAIO Podcasts",
+    description:
+      "Self-hosted podcast platform with RSS feeds, automated audio processing, and directory submissions. Listen, subscribe, and stay updated.",
+    icon: "🎙️",
+    href: "https://podcasts.flaio.com",
+    linkLabel: "Listen now",
+    accentHue: 235,
+    tags: ["audio", "podcasts", "media"],
+  },
 ]
